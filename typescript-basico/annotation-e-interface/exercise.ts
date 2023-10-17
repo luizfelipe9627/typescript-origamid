@@ -1,4 +1,7 @@
-//* > Exercício 1
+//* > Exercício 1.
+/*
+  Conserte a função com TypeScript.
+*/
 
 // Definido o parâmetro como string, pois o método trim() e toLowerCase() só existe para strings.
 function normalizarTexto(texto: string) {
@@ -6,7 +9,11 @@ function normalizarTexto(texto: string) {
 }
 console.log(normalizarTexto("   OlÁ, TuDo BeM?   "));
 
-//* > Exercício 2
+//* > Exercício 2.
+
+/*
+  Conserte a função com TypeScript.
+*/
 
 const input = document.querySelector("input");
 const total = localStorage.getItem("total");

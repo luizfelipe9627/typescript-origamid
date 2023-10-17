@@ -1,11 +1,18 @@
 //* > Union Types.
+/*
+  Union Types é um tipo que aceita/recebe mais de um tipo, como por exemplo, string e number usando o operador de OR/OU (|).
+*/
 
 let total: string | number = 200; // Cria uma variável chamada total que aceita/recebe o tipo string ou number tendo o valor inicial de 200.
+
 total = "300"; // Está atribuindo uma string a variável total.
 total = 400; // Está atribuindo um number a variável total.
 // total = false; // Irá dar erro, pois a variável total só aceita/recebe string ou number.
 
 //* > Funções.
+/*
+  Funções em TypeScript também podem ter Union Types, como por exemplo, o parâmetro da função pode aceitar/receber mais de um tipo.
+*/
 
 function isNumber(value: string | number) {
   if (typeof value === "number") {

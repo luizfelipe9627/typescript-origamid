@@ -1,3 +1,8 @@
+//* > Type Annotations.
+/*
+  Type Annotations é a forma de definir o tipo de dados que será passado para uma variável, função, etc.
+*/
+
 // Criado uma variável chamada produtos que receebe uma array de objetos.
 const produtos = [
   {

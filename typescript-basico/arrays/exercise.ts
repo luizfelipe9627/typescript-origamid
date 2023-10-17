@@ -1,5 +1,8 @@
-// 1. Defina a interface da API e mostre os dados na tela.
-// 2. Se for para iniciante pinte o título de azul, para avançado pinte de vermelho.
+//* > Exercício 1.
+/*
+  1. Defina a interface da API e mostre os dados na tela.
+  2. Se for para iniciante pinte o título de azul, para avançado pinte de vermelho.
+*/
 
 // Criado uma função chamada fetchCursos que irá buscar os dados da API.
 async function fetchCursos() {

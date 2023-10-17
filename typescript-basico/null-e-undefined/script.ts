@@ -1,4 +1,7 @@
-//* > Any.
+//* > Null.
+/*
+  No TypeScript quando um elemento não existe, por padrão ele é null.
+*/
 
 const button = document.querySelector("button"); // Criado uma constante button que recebe o elemento button do HTML, ele recebe dois tipos de dados, HTMLButtonElement se o botão existir e null se não existir.
 const config = localStorage.getItem("config"); // Criado uma constante config que puxa o item config do localStorage, ele recebe dois tipos de dados, string se o item existir e null se não existir.
@@ -16,6 +19,9 @@ if (button !== null) {
 button?.click(); // Outra forma é usando o operador ? que verifica se o botão existe, se existir ele executa o click, se não existir ele não executa nada.
 
 //* > Undefined.
+/*
+  O undefined é quando um elemento existe, porém, não tem um valor definido ou não foi inicializado.
+*/
 
 let total; // Criado uma variável total sem um valor inicial.
 console.log(total); // Retorna undefined, pois a variável não foi inicializada.
@@ -33,6 +39,9 @@ if (total) {
 }
 
 //* Propridades opcionais.
+/*
+  O TypeScript permite que uma propriedade seja opcional, ou seja, ela pode existir ou não, para isso é necessário usar o operador ?.
+*/
 
 // Criado uma interface Product que recebe um objeto com a propriedade nome que é opcinonal, ou seja, se ela existir ela é do tipo string, se não existir ela é undefined.
 interface Product {

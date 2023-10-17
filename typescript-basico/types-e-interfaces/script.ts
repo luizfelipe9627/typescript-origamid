@@ -1,4 +1,7 @@
 //* > Object.
+/*
+  O object em TypeScript tem que ter suas propriedades tipadas, ou seja, definir o tipo de dado que cada propriedade do objeto vai receber.
+*/
 
 // Está criando um type chamado Produto que recebe um objeto com a propriedade nome do tipo string, preco do tipo number e teclado do tipo boolean. Essas propriedades são obrigatórias.
 type Produto = {
@@ -34,7 +37,10 @@ const notebook: Produto = {
 preencherDados(computador);
 preencherDados(notebook);
 
-//* > Type.
+//* > Type Alias.
+/*
+  O type alias é um tipo que pode ser criado para facilitar a criação de outros tipos, como por exemplo, criar um type chamado NumberOrString que pode receber o tipo number ou string. Different from interface, type alias é usado para definir tipos de dados mais simples, como number, string, boolean, etc.
+*/
 
 type NumberOrString = number | string; // O type NumberOrString está falando que o valor pode ser do tipo number ou string.
 
@@ -61,6 +67,9 @@ pintarCategoria("design"); // Passando o valor design para a função pintarCate
 // pintarCategoria("programacao"); // Irá dar erro, pois o valor programacao não existe no type Categorias.
 
 //* > Interface.
+/*
+  A interface é um tipo que pode ser criado para facilitar a criação de outros tipos, como por exemplo, criar uma interface chamada Pessoa que pode receber o tipo string ou number. Diferente do type, a interface pode ser usada para definir tipos de dados mais complexos, como objetos, arrays, classes, etc.
+*/
 
 // Geralmente usamos o type para definir tipos de dados primitivos, como number, string, boolean, etc.
 type Pessoa = {

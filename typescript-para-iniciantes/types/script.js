@@ -1,5 +1,14 @@
-// Colocando o //@ts-check faz o TypeScript verificar o código e mostrar erros no VSCode.
+//* > @ts-check.
+/* 
+  O @ts-check é uma diretiva do TypeScript que faz o VSCode verificar o código e mostrar erros.
+*/
+
 /* @ts-check */ 
+
+//* > Types.
+/* 
+  O types é uma forma de definir o tipo de uma variável, função, etc.
+*/
 
 const frase = "Front end"; // Criado uma variável do tipo string.
 const total = 100.05; // Criado uma variável do tipo number.
