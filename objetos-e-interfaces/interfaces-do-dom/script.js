@@ -11,7 +11,7 @@ if (video instanceof HTMLVideoElement) {
     // Agora o TS sabe que existe a propriedade src pois o elemento é do tipo HTMLVideoElement.
     console.log(video.volume); // Mostra o volume no console, por padrão é 1.
 }
-//* > querySelector.
+//* > querySelectorAll.
 /*
   O querySelectorAll retorna uma NodeList de elementos. Não confundir o nome da interface NodeListOf com o nome da classe NodeList.
 */
