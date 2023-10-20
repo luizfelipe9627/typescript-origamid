@@ -22,3 +22,14 @@ console.log(pintarTela("#C9C9C9")); // Chama a função pintarTela e passando a 
 const btn = document.querySelector("button"); // Seleciona o elemento button e armazena na variável btn.
 // O operador ? é chamado de optional chaining, ele verifica se o objeto existe antes de acessar a propriedade, se não existir ele não executa o código seguinte.
 btn?.click(); // O método click por exemplo, não retorna nada, sendo seu tipo void.
+function isString(value) {
+    // Se o tipo de value for string executa o if.
+    if (typeof value === "string") {
+        return true; // Retorna true.
+    }
+}
+console.log(isString("Morango")); // Chama a função isString e passando a string "teste" como parâmetro. No console será mostrado true, pois a função retorna true.
+console.log(isString(10)); // Chama a função isString e passando o number 10 como parâmetro. No console será mostrado undefined, pois a função não retorna nada, sendo assim o tipo de retorno é void.
+//* > Never.
+//* > Métodos.
+//* > Overload.
