@@ -1,4 +1,8 @@
 //* > Eventos.
+/*
+  Passamos o evento como uma string e uma função de callback no método addEventListener. 
+  A função de callback possui um parâmetro que faz referência ao evento executado.
+*/
 
 const button = document.querySelector("button"); // Está selencionando o botão do HTML e atribuindo a uma variável chamada button.
 
@@ -18,6 +22,9 @@ function handleScroll(event: Event) {
 window.addEventListener("scroll", handleScroll); // Está adicionando um evento de scroll na página e executando a função handleScroll quando o evento é acionado..
 
 //* > Event e Instanceof.
+/*
+  Uma função, quando criada para ser executada em diferentes tipos de eventos, deve receber como parâmetro o tipo comum entre elas Event.
+*/
 
 // Criado uma função chamada ativarMenu que recebe um evento como parâmetro e o tipo do evento é Event, pois contém os eventos de mouse e touch.
 function ativarMenu(event: Event) {
@@ -34,6 +41,9 @@ document.documentElement.addEventListener("mousedown", ativarMenu); // Está adi
 document.documentElement.addEventListener("touchstart", ativarMenu); // Está adicionando um evento de toque na tela na página e executando a função ativarMenu quando o evento é acionado.
 
 //* > This.
+/*
+  Dentro de uma função, o this faz referência ao objeto que executou a mesma. No JavaScript o this pode ser passado como o primeiro parâmetro da função, mesmo não sendo necessário informar ele durante a execução.
+*/
 
 const link = document.querySelector("a"); // Está selencionando o link do HTML e atribuindo a uma variável chamada link.
 

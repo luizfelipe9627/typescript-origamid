@@ -49,8 +49,34 @@ function extractText(el) {
         el, // Armazena o elemento HTML.
     };
 }
-const link = document.querySelector("a");
-// Para o link não ser null, é necessário fazer uma verificação. Se existir executa o if.
-if (link) {
-    console.log(extractText(link).el.href); // Executa a função extractText passando o elemento HTML como parâmetro e mostra no console o valor da propriedade href do elemento HTML presente no objeto retornado pela função.
+const linkTag = document.querySelector("a");
+// Para o linkTag não ser null, é necessário fazer uma verificação. Se existir executa o if.
+if (linkTag) {
+    console.log(extractText(linkTag).el.href); // Executa a função extractText passando o elemento HTML como parâmetro e mostra no console o valor da propriedade href do elemento HTML presente no objeto retornado pela função.
 }
+// Criado uma função chamada $ que armazena uma variável(<>) do tipo genérico chamada Type essa variável Type extende o tipo Element, ou seja, só pode receber um elemento HTML como parâmetro que irá herdar os métodos e propriedades do tipo Element, que recebe um parâmetro chamado selector do tipo string e retorna um elemento HTML do tipo armazenado na variável Type ou null.
+function $(selector) {
+    return document.querySelector(selector); // Retorna um elemento HTML do tipo armazenado na variável Type ou null.
+}
+const h1 = $("h1"); // Executa a função $ passando o valor "h1" como parâmetro, e definindo o tipo da variável Type como HTMLElement e armazena o retorno na variável h1.
+console.log(h1); // Mostra no console o elemento HTML armazenado na variável h1.
+//* > Métodos.
+const linkClass = document.querySelector(".link"); // Puxa o elemento HTML com a classe .link e define o tipo do elemento como HTMLAnchorElement, depois armazena o elemento na variável linkClass.
+// Verificar se o elemento linkClass é uma instância de HTMLAnchorElement, é o mais recomendado, pois dirá ao TypeScript que o elemento é do tipo de dado HTMLAnchorElement.
+if (linkClass instanceof HTMLAnchorElement) {
+    linkClass?.href; // Acessa a propriedade href do elemento HTML.
+}
+// Criado uma função chamada getData que armazena uma variável(<>) do tipo genérico chamada T, que recebe um parâmetro chamado url do tipo string e retorna um objeto JSON do tipo armazenado na variável T.
+async function getData(url) {
+    // O await está falando para esperar as respostas das requisições para depois armazenar o retorno na variável.
+    const response = await fetch(url); // Faz uma requisição para a url passada como parâmetro e armazena o retorno(a resposta) na variável response.
+    const json = await response.json(); // Transforma a resposta em um objeto JSON e armazena o retorno na variável json.
+    return json; // Retorna o objeto JSON.
+}
+// Criado uma função chamada handleData responsável por tratar os dados da api. O async está tornando a função assíncrona, ou seja, ela vai esperar os await serem resolvidos para depois retornar o valor.
+async function handleData() {
+    // O await está falando para esperar as respostas das requisições para depois armazenar o retorno na variável.
+    const notebook = await getData("https://api.origamid.dev/json/notebook.json"); // Executa a função getData passando a url da api como parâmetro e definindo o tipo da variável T como a interface Notebook e armazena o retorno na variável notebook.
+    console.log(notebook.nome); // Mostra no console o valor da propriedade nome do objeto notebook.
+}
+handleData(); // Executa a função handleData.
