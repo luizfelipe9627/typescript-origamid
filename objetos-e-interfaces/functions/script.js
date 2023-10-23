@@ -31,5 +31,36 @@ function isString(value) {
 console.log(isString("Morango")); // Chama a função isString e passando a string "teste" como parâmetro. No console será mostrado true, pois a função retorna true.
 console.log(isString(10)); // Chama a função isString e passando o number 10 como parâmetro. No console será mostrado undefined, pois a função não retorna nada, sendo assim o tipo de retorno é void.
 //* > Never.
-//* > Métodos.
-//* > Overload.
+/*
+  O never é utilizado em casos onde a função gera um erro ou termina a aplicação.
+*/
+// Criado uma função chamada abortar que recebe uma mensagem do tipo string e retorna um tipo never(que nunca retorna nada).
+function abortar(mensagem) {
+    throw new Error(mensagem); // Gera um erro com a mensagem passada no parâmetro.
+}
+// Criado uma função chamada calcularQuadrado que recebe um parâmetro chamado forma do tipo Quadrado e que retorna um tipo number.
+function calcularQuadrado(forma) {
+    return forma.perimetro(3); // Retorna o resultado do método perimetro passando o número 3 como parâmetro.
+}
+// Criado uma função chamada normalizar que recebe um parâmetro do tipo string uma array de string e retorna um tipo string ou  array de string.
+function normalizar(valor) {
+    // Se o tipo de valor for string executa o if, caso contrário executa o else.
+    if (typeof valor === "string") {
+        return valor.toLowerCase().trim(); // Retorna o valor passado como parâmetro em caixa alta e sem os espaços no início e no fim.
+    }
+    else {
+        return valor.map((item) => item.trim().toLowerCase()); // Retorna um array com os valores passados como parâmetro em caixa alta e sem os espaços no início e no fim.
+    }
+}
+// Com o overload ele sabe qual função chamar dependendo do tipo de dado passado como parâmetro. Se for string chama a primeira função, se for array de string chama a segunda função.
+console.log(normalizar("   PrOdUtO   ")); // Chama a função normalizar e passando a string "   PrOdUtO   " como parâmetro. No console será mostrado "produto".
+console.log(normalizar([" BAnaNa", "MAçã", "   MELANCIA"])); // Chama a função normalizar e passando um array de string como parâmetro. No console será mostrado ["banana", "maçã", "melancia"].
+// Criado uma função overload chamada $ que recebe um parâmetro do tipo string e retorna um tipo Element ou null.
+// Mesmo as funções sendo overload, elas devem ser compatíveis com a função original(o tipo de retorno deve ser o mesmo), no caso Element ou null e o tipo de dado do parâmetro deve ser o mesmo, no caso string.
+function $(seletor) {
+    return document.querySelector(seletor); // Retorna o elemento selecionado pelo seletor passado como parâmetro.
+}
+// Usando o overload ele sabe qual função chamar dependendo do tipo de dado passado como parâmetro. Se for "a" chama a primeira função, se for string chama a segunda função.
+$("a")?.href; // Chama a função $ e passando o seletor "a" como parâmetro e acessa a propriedade href se o elemento existir(for diferente de null).
+$("video")?.volume; // Chama a função $ e passando o seletor "video" como parâmetro e acessa a propriedade volume se o elemento existir(for diferente de null).
+$(".item");
