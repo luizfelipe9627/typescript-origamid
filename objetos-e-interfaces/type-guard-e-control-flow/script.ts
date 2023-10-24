@@ -3,6 +3,7 @@
   O Type Guard (defesa) garante a Type Safety (segurança) do dado dentro do bloco condicional. Esse processo é chamado de Type Narrowing (estreitamento).
   O TypeScript faz Control Flow (controle de fluxo) para entender qual o dado dentro da condicional.
 */
+
 function typeGuard(value: any) {
   // As verificações são o control flow, ou seja, ele verifica o tipo do dado e executa o bloco condicional já sabendo o tipo do dado.
   if (typeof value === "string") {
