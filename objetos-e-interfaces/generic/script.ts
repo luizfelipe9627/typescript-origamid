@@ -1,6 +1,6 @@
 //* > Generics.
 /*
-  Um tipo genérico é uma forma de declararmos um parâmetro para a nossa função, classe ou interface. Esse tipo poderá ser indicado no momento do uso da função através de <Tipo>.
+  - Um tipo genérico é uma forma de declararmos um parâmetro para a nossa função, classe ou interface. Esse tipo poderá ser indicado no momento do uso da função através de <Tipo>.
 */
 
 // Criado uma função chamada retorno que armazena uma variável(<>) do tipo genérico chamada T, que recebe um parâmetro chamado a do tipo armazenado na variável T e retorna o valor de a seguindo o tipo armazenado na variável T.
@@ -15,7 +15,7 @@ console.log(retorno(true)); // Executa a função retorno passando o valor true 
 
 //* > Generics em Arrays.
 /*
-  É possível indicar que o tipo genérico deve ser um array com [].
+  - É possível indicar que o tipo genérico deve ser um array com [].
 */
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // Cria uma variável chamada numeros que armazena um array de números.
@@ -32,7 +32,7 @@ console.log(firstFive(frutas)); // Executa a função firstFive passando o array
 
 //* > Generics em Funções.
 /*
-  É possível indicar que o tipo genérico deve ser uma função com Nome<Tipo>(art Tipo) => {}.
+  - É possível indicar que o tipo genérico deve ser uma função com Nome<Tipo>(art Tipo) => {}.
 */
 
 // Criado uma função chamada notNull que armazena uma variável(<>) do tipo genérico chamada T, que recebe um parâmetro chamado arg do tipo armazenado na variável T.
@@ -64,7 +64,7 @@ console.log(typeData(200)); // Executa a função typeData passando o valor "Lui
 
 //* > Extends.
 /*
-  É possível indicar que o tipo genérico deve herdar de uma interface específica com o extends.
+  - É possível indicar que o tipo genérico deve herdar de uma interface específica com o extends.
 */
 
 // Criado uma função chamada extractText que armazena uma variável(<>) do tipo genérico chamada T essa variável T extende o tipo HTMLElement, ou seja, só pode receber um elemento HTML como parâmetro que irá herdar os métodos e propriedades do tipo HTMLElement, que recebe um parâmetro chamado el do tipo armazenado na variável T.
@@ -93,7 +93,7 @@ console.log(h1); // Mostra no console o elemento HTML armazenado na variável h1
 
 //* > Métodos.
 /*
-  Métodos nativos são definidos utilizando generics, assim podemos indicar durante a execução qual será o tipo esperado.
+  - Métodos nativos são definidos utilizando generics, assim podemos indicar durante a execução qual será o tipo esperado.
 */
 
 const linkClass = document.querySelector<HTMLAnchorElement>(".link"); // Puxa o elemento HTML com a classe .link e define o tipo do elemento como HTMLAnchorElement, depois armazena o elemento na variável linkClass.

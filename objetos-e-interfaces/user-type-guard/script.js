@@ -53,24 +53,22 @@ async function fetchProduto() {
 fetchProduto(); // Chama a função fetchProduto.
 // Criado uma user type guard chamada isProduto que recebe um parâmetro chamado value do tipo unknown que retorna um boolean, com o uso do is se for true ele está dizendo que o tipo de dado que será retornado é do tipo Produto que é uma interface.
 function isProduto(value) {
-    // Verifica se o value existe e se o tipo de dado é um objeto e se o objeto possui as propriedades nome e total, se for true em todas executa o if, se não executa o else.
+    // Verifica se o value existe e se o tipo de dado é um objeto e se o objeto possui as propriedades nome e preco, se for true em todas executa o if, se não executa o else.
     if (value &&
         typeof value === "object" &&
         "nome" in value &&
-        "total" in value) {
-        return true; // Retorna true se o tipo de dado for um objeto e se o objeto possui as propriedades nome e total.
+        "preco" in value) {
+        return true; // Retorna true se o tipo de dado for um objeto e se o objeto possui as propriedades nome e preco.
     }
     else {
-        return false; // Retorna false se o tipo de dado não for um objeto e se o objeto não possui as propriedades nome e total.
+        return false; // Retorna false se o tipo de dado não for um objeto e se o objeto não possui as propriedades nome e preco.
     }
 }
 // Criado uma função chamada handleProduto que recebe um parâmetro chamado value do tipo unknown, ou seja, não sabemos o tipo de dado que será passado e por isso ele só irá permitir o uso de métodos quando a Type Safety estiver garantida.
 function handleProduto(value) {
-    // A verificação está sendo feita com o uso do isProduto que é uma user type guard, se for true executa o if, se não executa o else.
+    // A verificação está sendo feita com o uso do isProduto que é uma user type guard, se for true executa o if.
     if (isProduto(value)) {
-        console.log("É um produto.");
-    }
-    else {
-        console.log("Não é um produto.");
+        console.log(value.nome); // Mostra o nome do produto no console.
+        console.log(value.preco); // Mostra o preço do produto no console.
     }
 }

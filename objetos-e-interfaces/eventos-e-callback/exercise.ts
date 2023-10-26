@@ -1,14 +1,14 @@
 //* > Exercício 1.
 /*
   Menu inativo:
-  - class="" em nav
-  - aria-expanded="false" em button
-  - aria-label="Abrir Menu" em button
+  1. class="" em nav.
+  2. aria-expanded="false" em button.
+  3. aria-label="Abrir Menu" em button.
 
   Menu ativo:
-  - class="active" em nav
-  - aria-expanded="true" em button
-  - aria-label="Fechar Menu" em button
+  1. class="active" em nav.
+  2. aria-expanded="true" em button.
+  3. aria-label="Fechar Menu" em button.
 */
 
 const buttonMobile = document.getElementById("btn-mobile"); // Está selencionando o botão do HTML e atribuindo a uma variável chamada button.

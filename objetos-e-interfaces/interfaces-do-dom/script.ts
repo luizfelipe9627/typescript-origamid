@@ -1,6 +1,6 @@
 //* > querySelector.
 /*
-  Quando selecionamos um elemento do DOM com o querySelector, o objeto retornado dependerá da string que passarmos no método.
+  - Quando selecionamos um elemento do DOM com o querySelector, o objeto retornado dependerá da string que passarmos no método.
 */
 
 const typeVideo = document.querySelector("video"); // Ao passar o mouse sobre a variável, o TS mostra que o tipo é HTMLVideoElement. Então é so colocar "as" e o tipo que queremos, no caso, "HTMLVideoElement".
@@ -17,7 +17,7 @@ if (video instanceof HTMLVideoElement) {
 
 //* > querySelectorAll.
 /*
-  O querySelectorAll retorna uma NodeList de elementos. Não confundir o nome da interface NodeListOf com o nome da classe NodeList.
+  - O querySelectorAll retorna uma NodeList de elementos. Não confundir o nome da interface NodeListOf com o nome da classe NodeList.
 */
 
 const links = document.querySelectorAll(".link"); // Está pegando todos os elementos que possuem a classe link e armazenando em uma NodeList na variável links. A NodeList é totalmente diferente de um array.

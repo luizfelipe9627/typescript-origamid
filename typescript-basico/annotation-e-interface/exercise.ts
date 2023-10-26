@@ -1,6 +1,6 @@
 //* > Exercício 1.
 /*
-  Conserte a função com TypeScript.
+  - Conserte a função com TypeScript.
 */
 
 // Definido o parâmetro como string, pois o método trim() e toLowerCase() só existe para strings.
@@ -12,7 +12,7 @@ console.log(normalizarTexto("   OlÁ, TuDo BeM?   "));
 //* > Exercício 2.
 
 /*
-  Conserte a função com TypeScript.
+  - Conserte a função com TypeScript.
 */
 
 const input = document.querySelector("input");

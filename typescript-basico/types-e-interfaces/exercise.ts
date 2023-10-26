@@ -1,6 +1,6 @@
 //* > Exercício 1.
 /*
-  Defina a interface da API e mostre os dados na tela.
+  - Defina a interface da API e mostre os dados na tela.
 */
 
 // Criado uma função chamada fetchProduct que irá buscar os dados da API.

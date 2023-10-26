@@ -1,6 +1,7 @@
 //* > Any implicito.
 /* 
-  O any é um tipo que pode receber qualquer tipo de dado, porém, não é recomendado usar o any pois ele pode gerar erros no código. O any pode ser usado implicitamente quando o TypeScript não consegue identificar o tipo de dado.
+  - O any é um tipo que pode receber qualquer tipo de dado, porém, não é recomendado usar o any pois ele pode gerar erros no código. 
+  - O any pode ser usado implicitamente quando o TypeScript não consegue identificar o tipo de dado.
 */
 
 // Criado uma função chamado normalizar que recebe um texto do tipo any.
@@ -14,7 +15,7 @@ console.log(normalizar(" DeSiGn ")); // Irá retornar no console o texto sem esp
 
 //* > Uso do any.
 /*
-  O any por padrão é usado quando não sabemos o tipo de dado que será retornado, como por exemplo, quando usamos uma API que retorna dados de tipos diferentes.
+  - O any por padrão é usado quando não sabemos o tipo de dado que será retornado, como por exemplo, quando usamos uma API que retorna dados de tipos diferentes.
 */
 
 // Criado uma função chamada fetchJSON que recebe uma url do tipo string. O async está sendo usado para que só seja retornado o resultado da função quando a promise for resolvida.
@@ -33,7 +34,7 @@ function manipularDados(data: { nome: string }) {
 
 //* > Any e erros.
 /*
-  O any pode gerar erros no código, como por exemplo, quando passamos um tipo any para uma função que espera um tipo específico de dado.
+  - O any pode gerar erros no código, como por exemplo, quando passamos um tipo any para uma função que espera um tipo específico de dado.
 */
 
 // Criado uma interface chamada Curso que contém os tipos de dados nome e horas.

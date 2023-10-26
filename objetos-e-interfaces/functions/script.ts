@@ -1,6 +1,6 @@
 //* > Declarando functions.
 /*
-  A interface de uma função é definida durante a sua declaração.
+  - A interface de uma função é definida durante a sua declaração.
 */
 
 // Criado uma função chamada somar que recebe três parâmetros do tipo number sendo que o último é opcinal, e retorna um tipo number.
@@ -20,7 +20,7 @@ console.log(subtrair(10, 5));
 
 //* > Void.
 /* 
-  O tipo void é usado para indicar que uma função não retorna nada.
+  - O tipo void é usado para indicar que uma função não retorna nada.
 */
 
 type Callback = (event: MouseEvent) => void; // Criado um tipo chamado Callback que recebe um parâmetro chamado event do tipo MouseEvent e não retorna nada(void).
@@ -49,7 +49,7 @@ console.log(isString(10)); // Chama a função isString e passando o number 10 c
 
 //* > Never.
 /*
-  O never é utilizado em casos onde a função gera um erro ou termina a aplicação.
+  - O never é utilizado em casos onde a função gera um erro ou termina a aplicação.
 */
 
 // Criado uma função chamada abortar que recebe uma mensagem do tipo string e retorna um tipo never(que nunca retorna nada).
@@ -62,7 +62,7 @@ function abortar(mensagem: string): never {
 
 //* > Métodos.
 /*
-  Na definição de interfaces podemos definir os métodos indicando o tipo de dado recebido e o seu possível retorno.
+  - Na definição de interfaces podemos definir os métodos indicando o tipo de dado recebido e o seu possível retorno.
 */
 
 interface Quadrado {
@@ -77,9 +77,9 @@ function calcularQuadrado(forma: Quadrado) {
 
 //* > Overload.
 /*
-  Existem funções que retornam diferentes dados dependendo do argumento.
-  Podemos declarar a interface dessas funções utilizando function overload. Basta declarar a interface antes da definição da mesma, utilizando o mesmo nome.
-  O Overload deve ser compatível com a função original.
+  - Existem funções que retornam diferentes dados dependendo do argumento.
+  - Podemos declarar a interface dessas funções utilizando function overload. Basta declarar a interface antes da definição da mesma, utilizando o mesmo nome.
+  - O Overload deve ser compatível com a função original.
 */
 
 function normalizar(valor: string): string; // Criado uma função overload chamada normalizar que se o valor for do tipo string retorna um tipo string.

@@ -1,6 +1,6 @@
 //* > Arrays.
 /*
-  Arrays são objetos do tipo lista que possuem uma sequência de elementos, que podem ser de qualquer tipo. Para definir um array, usamos o tipo seguido de [].
+  - Arrays são objetos do tipo lista que possuem uma sequência de elementos, que podem ser de qualquer tipo. Para definir um array, usamos o tipo seguido de [].
 */
 
 const numeros = [10, 20, 30, 40, 50, 3]; // Criado um array chamado numeros com elementos do tipo number.
@@ -22,7 +22,7 @@ console.log(filtrarValores(valores)); // Executa a função e imprime o resultad
 
 //* > Sintaxe alternativa.
 /*
-  Podemos usar a sintaxe de Array<tipo> para definir um array ao invés de tipo[], porém, a sintaxe de tipo[] é mais comum.
+  - Podemos usar a sintaxe de Array<tipo> para definir um array ao invés de tipo[], porém, a sintaxe de tipo[] é mais comum.
 */
 
 const dados = ["Senhor dos anéis", 29.99, true]; // Criado um array chamado dados com elementos de tipos diferentes.

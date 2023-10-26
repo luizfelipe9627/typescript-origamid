@@ -1,6 +1,6 @@
 //* Types primitivos.
 /* 
-  Types primitivos são os tipos de dados que não são objetos, ou seja, não possuem métodos e propriedades, como string, number, boolean, null, undefined, symbol e bigint.
+  - Types primitivos são os tipos de dados que não são objetos, ou seja, não possuem métodos e propriedades, como string, number, boolean, null, undefined, symbol e bigint.
 */
 
 const frase: string = "Front End"; // Cria uma variável chamada frase que só aceita/recbe string.
@@ -9,7 +9,7 @@ const condi: boolean = preco > 100; // Cria uma variável chamada condi que só 
 
 //* > Typeof.
 /* 
-  O typeof é um operador que retorna o tipo de uma variável, parâmetro ou retorno de uma função ou método.
+  - O typeof é um operador que retorna o tipo de uma variável, parâmetro ou retorno de uma função ou método.
 */
 
 console.log(typeof frase); // Retorna string no console.
@@ -30,7 +30,7 @@ if (typeof preco === "number") {
 
 //* > Função construtura.
 /*
-  Uma função construtura é uma função que cria um objeto a partir de uma classe, como por exemplo, a classe String que cria um objeto do tipo string.
+  - Uma função construtura é uma função que cria um objeto a partir de uma classe, como por exemplo, a classe String que cria um objeto do tipo string.
 */
 
 const city1 = new String("Rio de Janeiro"); // Cria uma variável chamada city1 que atráves de uma função construtura recebe um objeto do tipo string.

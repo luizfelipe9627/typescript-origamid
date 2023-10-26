@@ -1,6 +1,6 @@
 //* > Class.
 /*
-  Classes em TypeScript são semelhantes a classes em Java ou C#, são uma forma de definir uma estrutura para um objeto, com propriedades e métodos.
+  - Classes em TypeScript são semelhantes a classes em Java ou C#, são uma forma de definir uma estrutura para um objeto, com propriedades e métodos.
 */
 
 // Cria uma classe chamada Produto.
@@ -32,7 +32,7 @@ console.log(livro.precoReal()); // Mostra no console o retorno do método precoR
 
 //* > Instanceof.
 /*
-  O instanceof é um operador que verifica se um objeto é uma instância/referência de uma classe, retornando true ou false.
+  - O instanceof é um operador que verifica se um objeto é uma instância/referência de uma classe, retornando true ou false.
 */
 
 console.log(livro instanceof Produto); // Retorna true, pois o objeto livro é uma instância/referência da classe Produto.
@@ -97,7 +97,7 @@ if (produto2 instanceof Jogo) {
 
 //* > Extends.
 /*
-  O instanceof verifica se a função construtora herda de outra (extends).
+  - O instanceof verifica se a função construtora herda de outra (extends).
 */
 
 // Criado uma classe chamada Curso que herda as propriedades e métodos da classe Produto.
@@ -124,7 +124,7 @@ if (curso instanceof Produto) {
 
 //* Instanceof e Interface.
 /*
-  O instanceof é um operador que existe no JavaScript. Se você definir a interface de um objeto apenas com o interface e não possuir uma classe construtora do mesmo, não será possível utilizar o instanceof na interface.
+  - O instanceof é um operador que existe no JavaScript. Se você definir a interface de um objeto apenas com o interface e não possuir uma classe construtora do mesmo, não será possível utilizar o instanceof na interface.
 */
 
 // Criado uma interface chamada Carro que possui uma propriedade obrigatória chamada nome do tipo string.

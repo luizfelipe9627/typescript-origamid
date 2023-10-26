@@ -1,6 +1,6 @@
 //* > Annotation.
 /* 
-  Annotation é a definição do tipo de uma variável, parâmetro ou retorno de uma função ou método, o TypeScript obriga a definição do tipo, pois o JavaScript não faz isso automaticamente.
+  - Annotation é a definição do tipo de uma variável, parâmetro ou retorno de uma função ou método, o TypeScript obriga a definição do tipo, pois o JavaScript não faz isso automaticamente.
 */
 
 let produto: string = "Livro"; // Cria uma variável chamada produto do tipo string, sendo assim, a variável só vai aceitar valores do tipo number.
@@ -21,7 +21,7 @@ const carro: {
 
 //* > Interference.
 /* 
-  Interference é a definição do tipo de uma variável, parâmetro ou retorno de uma função pelo valor atribuído, o JavaScript faz isso automaticamente, mas o TypeScript também faz.
+  - Interference é a definição do tipo de uma variável, parâmetro ou retorno de uma função pelo valor atribuído, o JavaScript faz isso automaticamente, mas o TypeScript também faz.
 */
 
 const nome = "João"; // Cria uma variável chamada nome e atribui o valor João, o tipo da variável é inferido pelo valor atribuído, sendo assim, a variável só vai aceitar valores do tipo string.
@@ -32,7 +32,7 @@ const barato = 200 < 400 ? true : "produto caro"; // Cria uma variável chamada 
 
 //* > Funções.
 /* 
-  As annotations serão necessárias quando for definir o tipo dos parâmetros e o tipo do retorno de uma função.
+  - As annotations serão necessárias quando for definir o tipo dos parâmetros e o tipo do retorno de uma função.
 */
 
 // Quando é função o TypeScript obriga a definir o tipo dos parâmetros e o tipo do retorno da função. Nesse caso, a função só vai aceitar parâmetros do tipo number e vai retornar um valor do tipo number.

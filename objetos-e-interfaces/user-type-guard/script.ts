@@ -1,6 +1,6 @@
 //* > Array.
 /*
-  Uma array não pode ser verificada com o typeof pois a mesma é um object. Podemos verificar se o dado é instanceof Array ou podemos usar a função Array.isArray().
+  - Uma array não pode ser verificada com o typeof pois a mesma é um object. Podemos verificar se o dado é instanceof Array ou podemos usar a função Array.isArray().
 */
 
 // Função chamada fetchCurso responsável por fazer uma requisição para a API e retornar um objeto. O async está tornando a função assíncrona, ou seja, ela vai esperar os await serem resolvidos para depois retornar o valor.
@@ -27,8 +27,8 @@ fetchCurso(); // Chama a função fetchCurso.
 
 //* > Type Predicate.
 /*
-  Sabemos já que o TS não executa o JS durante a checagem dos tipos. Se isso ocorre, então como a função `**isArray`** consegue ser usada como Type Guard?
-  Com o Type Predicate `**:arg is type**`, podemos indicar qual o tipo de argumento uma função booleana (que retorna boolean) recebeu para ser verdadeira.
+  - Sabemos já que o TS não executa o JS durante a checagem dos tipos. Se isso ocorre, então como a função isArray consegue ser usada como Type Guard?
+  - Com o Type Predicate :arg is type, podemos indicar qual o tipo de argumento uma função booleana (que retorna boolean) recebeu para ser verdadeira.
 */
 
 // Criado uma função chamada isString que recebe um parâmetro chamado value do tipo unknown que retorna um boolean, com o uso do is ele está dizendo que o tipo de dado que será retornado é um boolean e se for true ele está dizendo que o tipo de dado que será retornado é uma string.
@@ -48,7 +48,7 @@ handleData("Olá!"); // Chama a função handleData passando uma string como par
 
 //* > Objetos.
 /*
-  O Type Predicate pode ser especialmente utilizado para criarmos Type Guards para objetos específicos e garantirmos a Type Safety (segurança) do projeto.
+  - O Type Predicate pode ser especialmente utilizado para criarmos Type Guards para objetos específicos e garantirmos a Type Safety (segurança) do projeto.
 */
 
 // Função chamada fetchProduto responsável por fazer uma requisição para a API e retornar um objeto. O async está tornando a função assíncrona, ou seja, ela vai esperar os await serem resolvidos para depois retornar o valor.
@@ -64,30 +64,29 @@ fetchProduto(); // Chama a função fetchProduto.
 // Criado uma interface chamada Produto que armazena os tipos de dados das propriedades do objeto retornado pela função fetchProduto.
 interface Produto {
   nome: string;
-  total: number;
+  preco: number;
 }
 
 // Criado uma user type guard chamada isProduto que recebe um parâmetro chamado value do tipo unknown que retorna um boolean, com o uso do is se for true ele está dizendo que o tipo de dado que será retornado é do tipo Produto que é uma interface.
 function isProduto(value: unknown): value is Produto {
-  // Verifica se o value existe e se o tipo de dado é um objeto e se o objeto possui as propriedades nome e total, se for true em todas executa o if, se não executa o else.
+  // Verifica se o value existe e se o tipo de dado é um objeto e se o objeto possui as propriedades nome e preco, se for true em todas executa o if, se não executa o else.
   if (
     value &&
     typeof value === "object" &&
     "nome" in value &&
-    "total" in value
+    "preco" in value
   ) {
-    return true; // Retorna true se o tipo de dado for um objeto e se o objeto possui as propriedades nome e total.
+    return true; // Retorna true se o tipo de dado for um objeto e se o objeto possui as propriedades nome e preco.
   } else {
-    return false; // Retorna false se o tipo de dado não for um objeto e se o objeto não possui as propriedades nome e total.
+    return false; // Retorna false se o tipo de dado não for um objeto e se o objeto não possui as propriedades nome e preco.
   }
 }
 
 // Criado uma função chamada handleProduto que recebe um parâmetro chamado value do tipo unknown, ou seja, não sabemos o tipo de dado que será passado e por isso ele só irá permitir o uso de métodos quando a Type Safety estiver garantida.
 function handleProduto(value: unknown) {
-  // A verificação está sendo feita com o uso do isProduto que é uma user type guard, se for true executa o if, se não executa o else.
+  // A verificação está sendo feita com o uso do isProduto que é uma user type guard, se for true executa o if.
   if (isProduto(value)) {
-    console.log("É um produto.");
-  } else {
-    console.log("Não é um produto.");
+    console.log(value.nome); // Mostra o nome do produto no console.
+    console.log(value.preco); // Mostra o preço do produto no console.
   }
 }

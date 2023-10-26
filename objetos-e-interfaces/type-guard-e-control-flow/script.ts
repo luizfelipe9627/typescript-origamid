@@ -1,7 +1,7 @@
 //* > Guard, Safety e Narrowing.
 /*
-  O Type Guard (defesa) garante a Type Safety (segurança) do dado dentro do bloco condicional. Esse processo é chamado de Type Narrowing (estreitamento).
-  O TypeScript faz Control Flow (controle de fluxo) para entender qual o dado dentro da condicional.
+  - O Type Guard (defesa) garante a Type Safety (segurança) do dado dentro do bloco condicional. Esse processo é chamado de Type Narrowing (estreitamento).
+  - O TypeScript faz Control Flow (controle de fluxo) para entender qual o dado dentro da condicional.
 */
 
 function typeGuard(value: any) {
@@ -24,7 +24,7 @@ typeGuard(document.body);
 
 //* > in.
 /*
-  O operador in verifica se o objeto possui uma propriedade com o mesmo nome da string comparada "propriedade" in obj.
+  - O operador in verifica se o objeto possui uma propriedade com o mesmo nome da string comparada "propriedade" in obj.
 */
 
 // Criado um objeto chamado obj.
@@ -57,7 +57,7 @@ async function fetchProduto() {
 // Criado uma interface chamada Produto que armazena os tipos de dados das propriedades do objeto retornado pela função fetchProduto.
 interface Produto {
   nome: string;
-  total: number;
+  preco: number;
 }
 
 // Função chamada handleProduto responsável por receber o objeto retornado pela função fetchProduto.
@@ -66,9 +66,9 @@ function handleProduto(data: Produto) {
   if ("nome" in data) {
     document.body.innerHTML += `<p>Nome: ${data.nome}</p>`; // Adiciona um elemento p com o valor da propriedade nome do objeto data.
   }
-  // Verifica se o objeto data possui a propriedade total, se sim executa o if. Assim aplicando o Type Guard e definindo o tipo do dado como number.
-  if ("total" in data) {
-    document.body.innerHTML += `<p>Preço: R$ ${data.total + 100}</p>`; // Adiciona um elemento p com o valor da propriedade preco do objeto data.
+  // Verifica se o objeto data possui a propriedade preco, se sim executa o if. Assim aplicando o Type Guard e definindo o tipo do dado como number.
+  if ("preco" in data) {
+    document.body.innerHTML += `<p>Preço: R$ ${data.preco + 100}</p>`; // Adiciona um elemento p com o valor da propriedade preco do objeto data.
   }
 }
 

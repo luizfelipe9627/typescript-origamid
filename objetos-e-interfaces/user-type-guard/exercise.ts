@@ -1,10 +1,10 @@
 //* > Exercício 1.
 /*
-  1 - Faça um fetch da API: https://api.origamid.dev/json/cursos.json.
-  2 - Defina a interface da API.
-  3 - Crie um Type Guard, que garanta que a API possui nome, horas e tags.
-  4 - Use Type Guards para garantir a Type Safety do código.
-  5 - Preencha os dados da API na tela.
+  1. Faça um fetch da API: https://api.origamid.dev/json/cursos.json.
+  2. Defina a interface da API.
+  3. Crie um Type Guard, que garanta que a API possui nome, horas e tags.
+  4. Use Type Guards para garantir a Type Safety do código.
+  5. Preencha os dados da API na tela.
 */
 
 // Função chamada fetchCursos responsável por fazer uma requisição para a API e retornar um objeto. O async está tornando a função assíncrona, ou seja, ela vai esperar os await serem resolvidos para depois retornar o valor.
