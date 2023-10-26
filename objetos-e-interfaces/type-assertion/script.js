@@ -33,4 +33,15 @@ handleProduto(); // Chama a função handleProduto.
   - Indica que não existe a possibilidade do dado ser null. Cuidado com o uso, pois pode levar a erros no runtime. Use apenas se tiver certeza.
   - Esse é um operador de TS "!." e não de JS como o "?.". Durante a compilação ele será removido.
 */
+const videoElement = document.querySelector("video"); // Cria uma constante chamada videoElement que armazena o elemento HTML video e indica que não existe a possibilidade do dado ser null.
+// Sabendo que ele não é null, é possível acessar as propriedades do elemento sem dar erro ou usar o Type Assertion(as), o Type Guard(if) ou o operador ?.
+console.log(videoElement.volume); // Mostra o volume do video no console.
+// Diferente do non-null(!) o operador ? não afirma que o elemento não é null, ele apenas verifica se o elemento é null ou não e caso não seja, ele acessa as propriedades do elemento, se não for, ele retorna undefined.
+// console.log(document.querySelector("a")?.href = "https://www.google.com"); // Acessa o elemento HTML a e atribui o valor da url para o href, caso o elemento exista.
+document.querySelector("a").href = "https://www.google.com"; // Acessa o elemento HTML a e atribui o valor da url para o href, o operador ! indica que não existe a possibilidade do dado ser null, deixando acessar as propriedades do elemento sem dar erro mesmo se não existir o elemento.
 //* > Outras sintaxes.
+const video1 = document.querySelector("video"); // Cria uma constante chamada video1 que armazena o elemento HTML video e indica que é do tipo HTMLVideoElement.
+// Cria uma constante chamad que armazena o elemento HTML video e indica que é do tipo HTMLVideoElement.
+const video2 = document.querySelector("video");
+const video3 = document.querySelector("video");
+const video4 = document.querySelector("video"); // Puxa o elemento HTML video do documento e armazena na constante video4.
