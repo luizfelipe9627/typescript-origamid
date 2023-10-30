@@ -72,5 +72,4 @@ const video1 = document.querySelector("video") as HTMLVideoElement; // Cria uma 
 const video2 = <HTMLVideoElement>document.querySelector("video");
 const video3 = document.querySelector<HTMLVideoElement>("video"); 
 
-
 const video4 = document.querySelector("video"); // Puxa o elemento HTML video do documento e armazena na constante video4.
