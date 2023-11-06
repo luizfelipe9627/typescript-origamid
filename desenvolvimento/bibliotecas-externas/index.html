@@ -4,12 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <title>Bibliotecas Externas</title>
+  <title>Bibliotecas externas</title>
 </head>
 
 <body>
-  <script src="./script.js"></script>
+  <!-- Cria um iframe com o vídeo do Vimeo, utilizando a API do Vimeo para que possamos controlar o vídeo através do script.js -->
+  <iframe id="vimeo" src="https://player.vimeo.com/video/76979871?h=8272103f6e" width="640" height="360" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+  <!-- Precisamos importar as bibliotecas externas antes de importar o script.js para que possamos utilizar as funções delas no script.js -->
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="./plugins/jquery-3.6.1.min.js"></script>
+  <script src="./plugins/lodash.min.js"></script>
+  <script type="module" src="./dist/script.js"></script>
 </body>
 
 </html>

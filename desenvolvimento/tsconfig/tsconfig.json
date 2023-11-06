@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ESNext", // O target é a versão do JavaScript que o TypeScript vai compilar.
-    "strict": true // Aplica o modo estrito do TypeScript.
-  }
+    "target": "ESNext",
+    "strict": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

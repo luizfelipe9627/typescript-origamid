@@ -36,15 +36,11 @@ async function fetchData(url) {
     const response = await fetch(base + url); // Faz uma requisição para a base + url passada como parâmetro e armazena o retorno(a resposta) na variável response.
     return await response.json(); // Transforma a resposta em um objeto JSON e retorna o objeto JSON.
 }
-// Cria uma função type guard chamada checkJogo que recebe um parâmetro chamado objeto do tipo unknown e retorna um booleano. O is verifica se o objeto for do tipo Jogo, se sim retorna true, se não, retorna false.
-function checkJogo(objeto) {
-    // Se o objeto existir, for do tipo objeto e possuir as propriedades nome, ano, desenvolvedora e plataformas na interface Jogo executa o if.
-    if (objeto &&
-        typeof objeto === "object" &&
-        "nome" in objeto &&
-        "ano" in objeto &&
-        "desenvolvedora" in objeto &&
-        "plataformas" in objeto) {
+// Cria uma função type guard genérica chamada checkInterfaceSimples que armazena uma variável(<>) do tipo genérico chamada Interface que recebe um parâmetro chamado objeto do tipo unknown e um parâmetro chamado key do tipo string e retorna true se o objeto passado como parâmetro possuir as propriedades da interface passada quando chamado a função e false se não possuir.
+// O type guard é responsável por verificar se o objeto passado como parâmetro possui as propriedades da interface passada quando chamado a função.
+function checkInterfaceSimples(objeto, key) {
+    // Se o objeto existir, for do tipo objeto e possuir a propriedade passada como parâmetro, executa o if.
+    if (objeto && typeof objeto === "object" && key in objeto) {
         return true; // Retorna true;
     }
     else {
@@ -54,13 +50,17 @@ function checkJogo(objeto) {
 // Criado uma função chamada handleData responsável por tratar os dados da api. O async está tornando a função assíncrona, ou seja, ela vai esperar os await serem resolvidos para depois retornar o valor.
 async function handleData() {
     // O await está falando para esperar as respostas das requisições para depois armazenar o retorno na variável.
-    const jogo = (await fetchData("jogo.json")); // Executa a função fetchData passando a url da api como parâmetro e definindo o tipo da variável T como a interface Jogo e armazena o retorno na variável jogo.
-    // Se o objeto for do tipo Jogo executa o if.
-    if (checkJogo(jogo)) {
+    const jogo = await fetchData("jogo.json"); // Executa a função fetchData passando a url da api como parâmetro.
+    const livro = await fetchData("livro.json"); // Executa a função fetchData passando a url da api como parâmetro.
+    // Chama a função checkInterfaceSimples passando o tipo da interface Jogo e o objeto jogo e a propriedade desenvolvedora como parâmetros e executa o if se a função retornar true.
+    if (checkInterfaceSimples(jogo, "desenvolvedora")) {
         // Agora o type safe está funcionando, pois o TypeScript sabe qual é o tipo de dado que está sendo utilizado, pois ele passou pelo type guard.
-        console.log(jogo.desenvolvedora.toLowerCase());
+        console.log(jogo);
     }
-    const livro = (await fetchData("livro.json")); // Executa a função fetchData passando a url da api como parâmetro e definindo o tipo da variável T como a interface Livro e armazena o retorno na variável livro.
-    console.log(livro);
+    // Chama a função checkInterfaceSimples passando o tipo da interface Livro e o objeto livro e a propriedade autor como parâmetros e executa o if se a função retornar true.
+    if (checkInterfaceSimples(livro, "autor")) {
+        // Agora o type safe está funcionando, pois o TypeScript sabe qual é o tipo de dado que está sendo utilizado, pois ele passou pelo type guard.
+        console.log(livro);
+    }
 }
 handleData(); // Chama a função handleData.
