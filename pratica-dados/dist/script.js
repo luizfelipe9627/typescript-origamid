@@ -1,3 +1,4 @@
+import Statistics from "./modules/Statistics.js";
 import fetchData from "./modules/fetchData.js";
 import normalizeTransaction from "./modules/normalizeTransaction.js";
 async function handleData() {
@@ -6,6 +7,11 @@ async function handleData() {
         return;
     const transacoes = data.map(normalizeTransaction);
     preencherTabela(transacoes);
+    preencherEstatisticas(transacoes);
+}
+function preencherEstatisticas(transacoes) {
+    const data = new Statistics(transacoes);
+    console.log(data.total);
 }
 function preencherTabela(transacoes) {
     const tabela = document.querySelector("#transacoes tbody");
