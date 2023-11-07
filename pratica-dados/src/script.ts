@@ -1,5 +1,6 @@
-// Importado as funções normalizeTransaction e preencherTabela.
+// Importado as funções que vão ser usadas.
 import Statistics from "./modules/Statistics.js";
+import { CountList } from "./modules/countBy.js";
 import fetchData from "./modules/fetchData.js";
 import normalizeTransaction from "./modules/normalizeTransaction.js";
 
@@ -18,10 +19,42 @@ async function handleData() {
   preencherEstatisticas(transacoes); // Executa a função preencherEstatisticas passando como parâmetro a constante transacoes.
 }
 
+// Criado uma função chamada preencherLista que cria um parâmetro chamado lista do tipo CountList(interface) e um parâmetro chamado containerId do tipo string e não retorna nada.
+function preencherLista(lista: CountList, containerId: string) {
+  const containerElement = document.getElementById(containerId) as HTMLElement; // Criado uma constante chamada containerElement que recebe o elemento span que está dentro do elemento com o id total, definido como um elemento do tipo HTMLElement.
+
+  // Se containerElement for verdadeiro(existir), executa o código abaixo.
+  if (containerElement) {
+    // O object.keys está recebendo como parâmetro a propriedade passado no parâmetro lista e retornando um array com as chaves do objeto.
+    Object.keys(lista)
+      // O forEach passa por cada chave do array, armazena o valor no parâmetro key e depois executa o código abaixo.
+      .forEach((key) => {
+        // Está adicionando um novo elemento no containerElement com a chave(nome do tipo de pagamento ou status) e o valor(quantidade) da propriedade.
+        containerElement.innerHTML += `
+          <p>${key}: ${lista[key]}</p>
+        `;
+      });
+  }
+}
+
 // Criado uma função chamada preencherEstatisticas que cria um parâmetro chamado transacoes do tipo Transacao(interface) que recebe um array de transações normalizadas e não retorna nada.
 function preencherEstatisticas(transacoes: Transacao[]): void {
   const data = new Statistics(transacoes); // Criado uma constante chamada data que recebe uma nova instância/refêrencia da classe Statistics passando como parâmetro a constante transacoes.
-  console.log(data.total)
+
+  const totalElement = document.querySelector("#total span") as HTMLElement; // Criado uma constante chamada totalElement que recebe o elemento span que está dentro do elemento com o id total, definido como um elemento do tipo HTMLElement.
+
+  // Se totalElement for verdadeiro(existir), executa o código abaixo.
+  if (totalElement) {
+    // O innerText do totalElement recebe o valor total da constante data formatado para o padrão de moeda brasileiro.
+    totalElement.innerText = data.total.toLocaleString("pt-br", {
+      style: "currency", // Estilo de moeda.
+      currency: "BRL", // Tipo de moeda.
+    });
+  }
+
+  preencherLista(data.pagamento, "pagamento"); // Executa a função preencherLista passando como parâmetro a propriedade pagamento da constante data e o id do elemento que será preenchido.
+
+  preencherLista(data.status, "status"); // Executa a função preencherLista passando como parâmetro a propriedade status da constante data e o id do elemento que será preenchido.
 }
 
 // Criado uma função chamada preencherTabela que cria um parâmetro chamado transacoes do tipo Transacao(interface) que recebe um array de transações normalizadas e não retorna nada.
