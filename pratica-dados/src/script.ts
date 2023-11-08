@@ -55,6 +55,13 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
   preencherLista(data.pagamento, "pagamento"); // Executa a função preencherLista passando como parâmetro a propriedade pagamento da constante data e o id do elemento que será preenchido.
 
   preencherLista(data.status, "status"); // Executa a função preencherLista passando como parâmetro a propriedade status da constante data e o id do elemento que será preenchido.
+
+  const diaElement = document.querySelector("#dia span") as HTMLElement; // Criado uma constante chamada diaElement que recebe o elemento span que está dentro do elemento com o id dia, definido como um elemento do tipo HTMLElement.
+
+  // Se diaElement for verdadeiro(existir), executa o código abaixo.
+  if (diaElement) {
+    diaElement.innerText = `${data.melhorDia[0]}`; // Puxa o primeiro item do array melhorDia(o dia em string) e adiciona no innerText do diaElement.
+  }
 }
 
 // Criado uma função chamada preencherTabela que cria um parâmetro chamado transacoes do tipo Transacao(interface) que recebe um array de transações normalizadas e não retorna nada.
