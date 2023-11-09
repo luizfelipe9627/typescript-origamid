@@ -1,5 +1,32 @@
 body {
-  font-size: 1.25rem;
   font-family: sans-serif;
-  margin: 2rem;
+  margin: 20px;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#slide-elements {
+  display: grid;
+}
+
+/* Fala com todos os elementos filhos de #slide-elements. */
+#slide-elements>* {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: none;
+}
+
+/* Fala com o elemento filho de #slide-elements que estiver com a classe active. */
+#slide-elements>.active {
+  opacity: 1;
+  visibility: visible;
 }
