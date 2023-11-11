@@ -8,5 +8,5 @@ const controls = document.getElementById("slide-controls");
 // Se o container, os elementos e os controles existirem e se os elementos tiverem filhos, então executa o if.
 if (container && elements && controls && elements.children.length) {
   // Está criando um objeto chamado slide que é uma instância/refêrencia da classe Slide. Passando como parâmetros o container, os elementos(filhos) convertidos em array, os controles e o tempo para trocar de slide.
-  new Slide(container, Array.from(elements.children), controls, 5000);
+  new Slide(container, Array.from(elements.children), controls, 3000);
 }
