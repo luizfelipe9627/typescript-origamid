@@ -1,6 +1,10 @@
 body {
   font-family: sans-serif;
   margin: 20px;
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 body.paused {
@@ -73,11 +77,12 @@ h1 {
   position: absolute;
   right: 15px;
   bottom: 15px;
-  background-color: transparent;
+  padding: 4px;
+  background-color: rgba(255, 255, 255, .2);
   border: none;
-  padding: 0;
   z-index: 999;
   display: flex;
+  border-radius: 4px;
   pointer-events: all;
 }
 
