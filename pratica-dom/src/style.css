@@ -133,3 +133,19 @@ h1 {
     transform: initial;
   }
 }
+
+#file {
+  margin: 0 auto;
+}
+
+#file-input {
+  background-color: red;
+  width: max-content;
+  padding: 4px;
+  margin: 0 auto;
+}
+
+#file-button {
+  margin: 0 auto;
+  padding: 15px 20px;
+}

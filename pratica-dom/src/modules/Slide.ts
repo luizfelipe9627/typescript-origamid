@@ -230,6 +230,75 @@ class Slide {
     nextButton.addEventListener("pointerup", () => this.next());
   }
 
+  addFile() {
+    const inputFile = document.getElementById("file-input") as HTMLInputElement; // Está atribuindo o elemento que tem o id file para a constante inputFile.
+    const buttonFile = document.getElementById(
+      "file-button",
+    ) as HTMLButtonElement; // Está atribuindo o elemento que tem o id file para a constante buttonFile.
+    const slideContainer = document.getElementById(
+      "slide-elements",
+    ) as HTMLDivElement; // Está atribuindo todos os elementos que tem a classe slide para a constante slideElements.
+
+    const handleClick = () => {
+      if (inputFile.files?.length) {
+        const file = inputFile.files[0];
+        console.log(file);
+
+        // Se o tipo do arquivo incluir a palavra video executa o if abaixo.
+        if (file.type.includes("video")) {
+          const video = document.createElement("video");
+          video.playsInline = true;
+          video.src = URL.createObjectURL(file);
+          slideContainer.appendChild(video);
+          this.slides.push(video);
+          this.addThumbItemsNew();
+        }
+
+        // Se não, se o tipo do arquivo incluir a palavra image executa o else if abaixo.
+        else if (file.type.includes("image")) {
+          const image = document.createElement("img");
+          image.src = URL.createObjectURL(file);
+          slideContainer.appendChild(image);
+          this.slides.push(image);
+          this.addThumbItemsNew();
+        }
+
+        // Se não, se o tipo do arquivo incluir a palavra audio executa o else if abaixo.
+        else if (file.type.includes("audio")) {
+          console.log("Vai ser criado");
+        }
+
+        // Se não, executa o else.
+        else {
+          console.log("Não tem arquivo");
+        }
+      }
+    };
+
+    // Adiciona um evento de clique para o elemento buttonFile e quando acionado executa a função handleClick.
+    buttonFile.addEventListener("click", () => handleClick);
+  }
+
+  // Criado um método privado(ou seja, só pode ser chamado/executado dentro da classe) chamado addThumbItemsNew, é responsável por adicionar o novo thumb do slide.
+  private addThumbItemsNew() {
+    const thumContainer = document.getElementById("slide-thumb"); // Está atribuindo o elemento que tem o id slide-thumb para a constante thumContainer.
+
+    // Se o elemento thumContainer não existir, o método é interrompido, não executando o código abaixo.
+    if (!thumContainer) {
+      return;
+    }
+
+    // Está adicionando a estrutura HTML do elemento thumContainer novo.
+    thumContainer.innerHTML += `
+        <span>
+          <span class="thumb-item"></span>
+        </span>
+      `;
+
+    this.thumbItems = Array.from(document.querySelectorAll(".thumb-item")); // Está atribuindo o valor de um array com todos os elementos que tem a classe thumb-item para a propriedade thumbItems.
+  }
+
+  // Método privado(ou seja, só pode ser chamado/executado dentro da classe) chamado addThumbItems, é responsável por adicionar os thumbs do slide.
   private addThumbItems() {
     const thumbContainer = document.createElement("div"); // Está criando um elemento div e atribuindo para a constante thumbContainer.
     thumbContainer.id = "slide-thumb"; // Está atribuindo o valor slide-thumb para a propriedade id do elemento thumbContainer.
@@ -242,10 +311,10 @@ class Slide {
           <span class="thumb-item"></span>
         </span>
       `;
-
-      this.controls.appendChild(thumbContainer); // Está adicionando o elemento thumbContainer como filho do elemento controls.
-      this.thumbItems = Array.from(document.querySelectorAll(".thumb-item")); // Está atribuindo o valor de um array com todos os elementos que tem a classe thumb-item para a propriedade thumbItems.
     }
+
+    this.controls.appendChild(thumbContainer); // Está adicionando o elemento thumbContainer como filho do elemento controls.
+    this.thumbItems = Array.from(document.querySelectorAll(".thumb-item")); // Está atribuindo o valor de um array com todos os elementos que tem a classe thumb-item para a propriedade thumbItems.
   }
 
   // Criado um método privado(ou seja, só pode ser chamado/executado dentro da classe) chamado init, é responsável por iniciar os métodos do slide e seus controles.
@@ -253,6 +322,7 @@ class Slide {
     this.addControls(); // Está chamando/executando o método addControls.
     this.addThumbItems(); // Está chamando/executando o método addThumbItems.
     this.show(this.index); // Está chamando/executando o método show passando o index como parâmetro.
+    this.addFile();
   }
 }
 

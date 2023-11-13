@@ -152,6 +152,51 @@ class Slide {
         prevButton.addEventListener("pointerup", () => this.prev());
         nextButton.addEventListener("pointerup", () => this.next());
     }
+    addFile() {
+        const inputFile = document.getElementById("file-input");
+        const buttonFile = document.getElementById("file-button");
+        const slideContainer = document.getElementById("slide-elements");
+        const handleClick = () => {
+            if (inputFile.files?.length) {
+                const file = inputFile.files[0];
+                console.log(file);
+                if (file.type.includes("video")) {
+                    const video = document.createElement("video");
+                    video.playsInline = true;
+                    video.src = URL.createObjectURL(file);
+                    slideContainer.appendChild(video);
+                    this.slides.push(video);
+                    this.addThumbItemsNew();
+                }
+                else if (file.type.includes("image")) {
+                    const image = document.createElement("img");
+                    image.src = URL.createObjectURL(file);
+                    slideContainer.appendChild(image);
+                    this.slides.push(image);
+                    this.addThumbItemsNew();
+                }
+                else if (file.type.includes("audio")) {
+                    console.log("Vai ser criado");
+                }
+                else {
+                    console.log("Não tem arquivo");
+                }
+            }
+        };
+        buttonFile.addEventListener("click", () => handleClick);
+    }
+    addThumbItemsNew() {
+        const thumContainer = document.getElementById("slide-thumb");
+        if (!thumContainer) {
+            return;
+        }
+        thumContainer.innerHTML += `
+        <span>
+          <span class="thumb-item"></span>
+        </span>
+      `;
+        this.thumbItems = Array.from(document.querySelectorAll(".thumb-item"));
+    }
     addThumbItems() {
         const thumbContainer = document.createElement("div");
         thumbContainer.id = "slide-thumb";
@@ -161,14 +206,15 @@ class Slide {
           <span class="thumb-item"></span>
         </span>
       `;
-            this.controls.appendChild(thumbContainer);
-            this.thumbItems = Array.from(document.querySelectorAll(".thumb-item"));
         }
+        this.controls.appendChild(thumbContainer);
+        this.thumbItems = Array.from(document.querySelectorAll(".thumb-item"));
     }
     init() {
         this.addControls();
         this.addThumbItems();
         this.show(this.index);
+        this.addFile();
     }
 }
 export default Slide;
