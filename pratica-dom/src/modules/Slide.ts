@@ -14,6 +14,8 @@ class Slide {
   paused: boolean;
   thumbItems: HTMLElement[] | null;
   thumb: HTMLElement | null;
+  volume: HTMLElement | null;
+  volumeImage: HTMLImageElement | null;
 
   // O construtor deve receber o container do slide, os elementos do slide e os controles do slide e o tempo para trocar de slide, se não for passado o tempo, o padrão será 5000ms.
   constructor(
@@ -42,6 +44,9 @@ class Slide {
 
     this.thumbItems = null; // Está atribuindo o valor null para a propriedade thumbItems como padrão.
     this.thumb = null; // Está atribuindo o valor null para a propriedade thumb como padrão.
+
+    this.volume = null; // Está atribuindo o valor null para a propriedade volume como padrão.
+    this.volumeImage = null; // Está atribuindo o valor null para a propriedade volumeImage como padrão.
 
     this.init(); // Está chamando o método init responsável por iniciar o slide e seus controles.
   }
@@ -76,14 +81,28 @@ class Slide {
     // Se o slide for um elemento do tipo HTMLVideoElement executa o if que é uma type guard, se não for executa o else.
     if (this.slide instanceof HTMLVideoElement) {
       this.autoVideo(this.slide); // Está chamando/executando o método autoVideo passando o slide como parâmetro.
+
+      if (this.volumeImage) {
+        this.volumeImage.src = "./src/assets/volume-off.svg";
+      }
     } else {
       this.auto(this.time); // Está chamando/executando o método auto passando o tempo de troca de slide como parâmetro.
+
+      if (this.volume) {
+        this.volume.id = "slide-volume-muted"; // Está adicionando a classe volume para o elemento controls.
+      }
     }
   }
 
   // Criado um método chamado autoVideo que recebe um vídeo do tipo HTMLVideoElement, é responsável por fazer o slide de vídeo ir para o próximo slide quando o vídeo acabar.
   autoVideo(video: HTMLVideoElement) {
-    video.muted = true; // Está atribuindo o valor true para a propriedade muted do elemento video, fazendo o vídeo ficar mudo.
+    video.muted = true; // Está atribuindo o valor true para a propriedade muted do elemento video, fazendo o vídeo ficar mudo quando começar a ser executado.
+
+    // Se o elemento volume existir executa o if.
+    if (this.volume) {
+      this.volume.id = "slide-volume"; // Está adicionando a classe volume para o elemento controls.
+    }
+
     video.play(); // Está executando o método play do elemento video, fazendo o vídeo começar a ser executado.
 
     let firstPlay = true; // Está atribuindo o valor true para a variável firstPlay como padrão.
@@ -97,6 +116,27 @@ class Slide {
         firstPlay = false; // Está atribuindo o valor false para a variável firstPlay.
       }
     });
+  }
+
+  // Adiciona um método privado chamado volumeVideo, responsável por mutar e desmutar o vídeo.
+  volumeVideo() {
+    if (this.slide instanceof HTMLVideoElement) {
+      if (this.slide.muted) {
+        this.slide.muted = false; // Está atribuindo o valor false para a propriedade muted do elemento video, fazendo o vídeo ficar com som.
+
+        // Se o elemento volumeImage existir executa o if.
+        if (this.volumeImage) {
+          this.volumeImage.src = "./src/assets/volume-on.svg"; // Está atribuindo o caminho da imagem para a propriedade src do elemento volumeImage.
+        }
+      } else {
+        this.slide.muted = true; // Está atribuindo o valor true para a propriedade muted do elemento video, fazendo o vídeo ficar mudo.
+
+        // Se o elemento volumeImage existir executa o if.
+        if (this.volumeImage) {
+          this.volumeImage.src = "./src/assets/volume-off.svg"; // Está atribuindo o caminho da imagem para a propriedade src do elemento volumeImage.
+        }
+      }
+    }
   }
 
   // Criado um método chamado auto que recebe um time do tipo number, é responsável por fazer o slide trocar automaticamente após um tempo.
@@ -131,8 +171,6 @@ class Slide {
 
   // Criado um método chamado pause, é responsável por pausar o slide.
   pause() {
-    document.body.classList.add("paused"); // Está adicionando a classe paused para o elemento body.
-
     // Está instanciando a classe Timeout e atribuindo as propriedades handler(a função anônima) e o tempo para executar o handler(a função), no caso 300ms e atribuindo para a propriedade pausedTimeout.
     this.pausedTimeout = new Timeout(() => {
       this.timeout?.pause(); // Está pausando o setTimeout se ele existir.
@@ -168,13 +206,20 @@ class Slide {
   // Criado um método privado(ou seja, só pode ser chamado/executado dentro da classe) chamado addControls, é responsável por adicionar os controles do slide.
   private addControls() {
     const prevButton = document.createElement("button"); // Está criando um elemento button e atribuindo para a constante prevButton.
-    const nextButton = document.createElement("button"); // Está criando um elemento button e atribuindo para a constante nextButton.
-
     prevButton.innerText = "Slide anterior"; // Está atribuindo um texto para o elemento prevButton.
-    nextButton.innerText = "Próximo slide"; // Está atribuindo um texto para o elemento nextButton.
-
     this.controls.appendChild(prevButton); // Está adicionando o elemento prevButton como filho do elemento controls.
+
+    const nextButton = document.createElement("button"); // Está criando um elemento button e atribuindo para a constante nextButton.
+    nextButton.innerText = "Próximo slide"; // Está atribuindo um texto para o elemento nextButton.
     this.controls.appendChild(nextButton); // Está adicionando o elemento nextButton como filho do elemento controls.
+
+    this.volume = document.createElement("button"); // Está criando um elemento button e atribuindo para a constante volumeButton.
+    this.controls.appendChild(this.volume); // Está adicionando o elemento volumeButton como filho do elemento controls.
+    this.volume?.addEventListener("click", () => this.volumeVideo()); // Adiciona um evento de clique para o elemento volumeButton e quando acionado executa a função volumeVideo.
+
+    this.volumeImage = document.createElement("img"); // Está criando um elemento img e atribuindo para a constante image.
+    this.volume.appendChild(this.volumeImage); // Está adicionando o elemento image como filho do elemento volumeButton se ele existir.
+    this.volumeImage.src = "./src/assets/volume-off.svg"; // Está atribuindo o caminho da imagem para a propriedade src do elemento image se ele existir.
 
     this.controls.addEventListener("pointerdown", () => this.pause()); // Está criando um evento do tipo pointerdown(é disparado quando o mouse ou o dedo é pressionado no elemento) para o elemento controls e quando acionado executa a função pause.
     document.addEventListener("pointerup", () => this.continue()); // Está criando um evento do tipo pointerup(é disparado quando o mouse ou o dedo é removido do elemento) para o documento(body) e quando acionado executa a função continue.

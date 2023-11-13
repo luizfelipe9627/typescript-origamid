@@ -11,6 +11,8 @@ class Slide {
     paused;
     thumbItems;
     thumb;
+    volume;
+    volumeImage;
     constructor(container, slides, controls, time = 5000) {
         this.container = container;
         this.slides = slides;
@@ -25,6 +27,8 @@ class Slide {
         this.paused = false;
         this.thumbItems = null;
         this.thumb = null;
+        this.volume = null;
+        this.volumeImage = null;
         this.init();
     }
     hide(element) {
@@ -47,13 +51,22 @@ class Slide {
         this.slide.classList.add("active");
         if (this.slide instanceof HTMLVideoElement) {
             this.autoVideo(this.slide);
+            if (this.volumeImage) {
+                this.volumeImage.src = "./src/assets/volume-off.svg";
+            }
         }
         else {
             this.auto(this.time);
+            if (this.volume) {
+                this.volume.id = "slide-volume-muted";
+            }
         }
     }
     autoVideo(video) {
         video.muted = true;
+        if (this.volume) {
+            this.volume.id = "slide-volume";
+        }
         video.play();
         let firstPlay = true;
         video.addEventListener("playing", () => {
@@ -62,6 +75,22 @@ class Slide {
                 firstPlay = false;
             }
         });
+    }
+    volumeVideo() {
+        if (this.slide instanceof HTMLVideoElement) {
+            if (this.slide.muted) {
+                this.slide.muted = false;
+                if (this.volumeImage) {
+                    this.volumeImage.src = "./src/assets/volume-on.svg";
+                }
+            }
+            else {
+                this.slide.muted = true;
+                if (this.volumeImage) {
+                    this.volumeImage.src = "./src/assets/volume-off.svg";
+                }
+            }
+        }
     }
     auto(time) {
         this.timeout?.clear();
@@ -83,7 +112,6 @@ class Slide {
         this.show(next);
     }
     pause() {
-        document.body.classList.add("paused");
         this.pausedTimeout = new Timeout(() => {
             this.timeout?.pause();
             this.paused = true;
@@ -107,11 +135,17 @@ class Slide {
     }
     addControls() {
         const prevButton = document.createElement("button");
-        const nextButton = document.createElement("button");
         prevButton.innerText = "Slide anterior";
-        nextButton.innerText = "Próximo slide";
         this.controls.appendChild(prevButton);
+        const nextButton = document.createElement("button");
+        nextButton.innerText = "Próximo slide";
         this.controls.appendChild(nextButton);
+        this.volume = document.createElement("button");
+        this.controls.appendChild(this.volume);
+        this.volume?.addEventListener("click", () => this.volumeVideo());
+        this.volumeImage = document.createElement("img");
+        this.volume.appendChild(this.volumeImage);
+        this.volumeImage.src = "./src/assets/volume-off.svg";
         this.controls.addEventListener("pointerdown", () => this.pause());
         document.addEventListener("pointerup", () => this.continue());
         document.addEventListener("touchend", () => this.continue());

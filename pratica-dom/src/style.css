@@ -3,7 +3,7 @@ body {
   margin: 20px;
 }
 
-body {
+body.paused {
   /* O user-select: none impede que o usuário selecione o texto da página. */
   user-select: none;
   -webkit-user-select: none;
@@ -62,11 +62,29 @@ h1 {
   position: relative;
 }
 
-#slide-controls button {
+#slide-controls button:not(#slide-volume) {
   opacity: 0;
   appearance: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  z-index: 1;
 }
+
+#slide-volume {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  z-index: 999;
+  display: flex;
+  pointer-events: all;
+}
+
+#slide-volume-muted {
+  display: none;
+}
+
 
 #slide-thumb {
   display: flex;
