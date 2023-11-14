@@ -176,7 +176,7 @@ class Slide {
       if (this.slide instanceof HTMLVideoElement) {
         this.slide.pause(); // Está pausando o vídeo.
       }
-    }, 300);
+    }, 100);
   }
 
   // Criado um método chamado continue, é responsável por continuar o slide.
@@ -210,7 +210,7 @@ class Slide {
 
     this.volume = document.createElement("button"); // Está criando um elemento button e atribuindo para a constante volumeButton.
     this.controls.appendChild(this.volume); // Está adicionando o elemento volumeButton como filho do elemento controls.
-    this.volume?.addEventListener("click", () => this.volumeVideo()); // Adiciona um evento de clique para o elemento volumeButton e quando acionado executa a função volumeVideo.
+    this.volume.addEventListener("click", () => this.volumeVideo()); // Adiciona um evento de clique para o elemento volumeButton e quando acionado executa a função volumeVideo.
 
     this.volumeImage = document.createElement("img"); // Está criando um elemento img e atribuindo para a constante image.
     this.volume.appendChild(this.volumeImage); // Está adicionando o elemento image como filho do elemento volumeButton se ele existir.

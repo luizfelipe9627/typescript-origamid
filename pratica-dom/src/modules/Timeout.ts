@@ -31,12 +31,6 @@ class Timeout {
     this.id = setTimeout(this.handler, this.timeLeft); // Armazena o valor do setTimeout em uma propriedade id, excutando o setTimeout passando o handler e o timeLeft(propriedade que armazena o tempo que falta para executar o setTimeout) como parâmetro.
     this.start = Date.now(); // Armazena o valor da data atual em uma propriedade start.
   }
-
-  // O método getTimeRemaining é responsável por retornar oo tempo que falta para o tempo do setTimeout acabar.
-  getTimeRemaining() {
-    const timePassed = Date.now() - this.start; // Está armazenando o valor da data atual menos o valor da propriedade start em uma constante.
-    return Math.max(0, this.timeLeft - timePassed); // Está retornando o valor máximo entre 0 e o valor da propriedade timeLeft menos o valor da constante timePassed.
-  }
 }
 
 export default Timeout;

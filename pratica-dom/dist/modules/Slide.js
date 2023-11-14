@@ -116,7 +116,7 @@ class Slide {
             if (this.slide instanceof HTMLVideoElement) {
                 this.slide.pause();
             }
-        }, 300);
+        }, 100);
     }
     continue() {
         document.body.classList.remove("paused");
@@ -139,7 +139,7 @@ class Slide {
         this.controls.appendChild(nextButton);
         this.volume = document.createElement("button");
         this.controls.appendChild(this.volume);
-        this.volume?.addEventListener("click", () => this.volumeVideo());
+        this.volume.addEventListener("click", () => this.volumeVideo());
         this.volumeImage = document.createElement("img");
         this.volume.appendChild(this.volumeImage);
         this.volumeImage.src = "./src/assets/volume-off.svg";
