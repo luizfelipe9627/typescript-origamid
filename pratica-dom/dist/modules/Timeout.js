@@ -22,6 +22,10 @@ class Timeout {
         this.id = setTimeout(this.handler, this.timeLeft);
         this.start = Date.now();
     }
+    getTimeRemaining() {
+        const timePassed = Date.now() - this.start;
+        return Math.max(0, this.timeLeft - timePassed);
+    }
 }
 export default Timeout;
 //# sourceMappingURL=Timeout.js.map

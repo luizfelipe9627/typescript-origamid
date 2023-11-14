@@ -34,10 +34,7 @@ class Slide {
     this.pausedTimeout = null; // Está atribuindo o valor null para a propriedade pausedTimeout como padrão.
 
     // Está fazendo que quando o usuário sair da página, o slide volte para aonde ele estava.
-    this.index = localStorage.getItem("activeSlide")
-      ? Number(localStorage.getItem("activeSlide"))
-      : 0; // Está atribuindo o valor do item activeSlide do localStorage convertido para number para a propriedade index, se não existir o item activeSlide no localStorage, atribui o valor 0 para a propriedade index.
-
+    this.index = 0;
     this.slide = this.slides[this.index]; // Está atribuindo o valor do slide que está no index para a propriedade slide.
 
     this.paused = false; // Está atribuindo o valor false para a propriedade paused como padrão.
@@ -66,8 +63,6 @@ class Slide {
   show(index: number) {
     this.index = index; // Está atribuindo o valor do index passado como parâmetro para a propriedade index da classe pai.
     this.slide = this.slides[this.index]; // Está atribuindo  o valor do slide que está no index passado como parâmetro para a propriedade slide da classe pai.
-
-    localStorage.setItem("activeSlide", this.index.toString()); // Está criando um item no localStorage com o nome activeSlide e atribuindo o valor do index passado como parâmetro convertido para string.
 
     if (this.thumbItems) {
       this.thumb = this.thumbItems[this.index]; // Está atribuindo o valor do elemento que está no index(equivalente ao slide atual) para a propriedade thumb.
@@ -230,7 +225,8 @@ class Slide {
     nextButton.addEventListener("pointerup", () => this.next());
   }
 
-  addFile() {
+  // Criado um método privado(ou seja, só pode ser chamado/executado dentro da classe) chamado addFile, é responsável por adicionar um novo arquivo ao slide.
+  private addFile() {
     const inputFile = document.getElementById("file-input") as HTMLInputElement; // Está atribuindo o elemento que tem o id file para a constante inputFile.
     const buttonFile = document.getElementById(
       "file-button",
@@ -239,44 +235,64 @@ class Slide {
       "slide-elements",
     ) as HTMLDivElement; // Está atribuindo todos os elementos que tem a classe slide para a constante slideElements.
 
-    const handleClick = () => {
+    const fileInfo = document.getElementById("file-info") as HTMLDivElement; // Está atribuindo o elemento que tem o id file-info para a constante fileInfo.
+    const fileName = document.getElementById("file-name") as HTMLDivElement; // Está atribuindo o elemento que tem o id file-name para a constante fileName.
+
+    // Criado uma função chamada createAndAppendElement que recebe um elemento do tipo HTMLElement, é responsável por adicionar o elemento passado como parâmetro para o slide.
+    const createAndAppendElement = (element: HTMLElement) => {
+      slideContainer.appendChild(element);
+      this.slides.push(element);
+      this.addThumbItemsNew();
+    };
+
+    // Criado uma função chamada buttonClick, é responsável por adicionar o novo elemento ao slide.
+    const buttonClick = () => {
+      // Se o elemento inputFile possuir files, executa o if abaixo.
       if (inputFile.files?.length) {
-        const file = inputFile.files[0];
-        console.log(file);
+        const file = inputFile.files[0]; // Está atribuindo o primeiro arquivo do elemento inputFile para a constante file.
 
         // Se o tipo do arquivo incluir a palavra video executa o if abaixo.
         if (file.type.includes("video")) {
-          const video = document.createElement("video");
-          video.playsInline = true;
-          video.src = URL.createObjectURL(file);
-          slideContainer.appendChild(video);
-          this.slides.push(video);
-          this.addThumbItemsNew();
-        }
+          const video = document.createElement("video"); // Está criando um elemento video e atribuindo para a constante video.
+          video.playsInline = true; // Está atribuindo o valor true para a propriedade playsInline do elemento video, que é responsável por fazer o vídeo ser executado no iOS.
+          video.src = URL.createObjectURL(file); // Está atribuindo o caminho do file do input para a propriedade src do elemento video.
 
+          createAndAppendElement(video); // Está chamando/executando a função createAndAppendElement responsável por adicionar o elemento video para o slide e passando o elemento video como parâmetro.
+        }
         // Se não, se o tipo do arquivo incluir a palavra image executa o else if abaixo.
         else if (file.type.includes("image")) {
-          const image = document.createElement("img");
-          image.src = URL.createObjectURL(file);
-          slideContainer.appendChild(image);
-          this.slides.push(image);
-          this.addThumbItemsNew();
+          const image = document.createElement("img"); // Está criando um elemento img e atribuindo para a constante image.
+          image.src = URL.createObjectURL(file); // Está atribuindo o caminho do file do input para a propriedade src do elemento image.
+
+          createAndAppendElement(image); // Está chamando/executando a função createAndAppendElement responsável por adicionar o elemento image para o slide e passando o elemento image como parâmetro.
         }
 
-        // Se não, se o tipo do arquivo incluir a palavra audio executa o else if abaixo.
-        else if (file.type.includes("audio")) {
-          console.log("Vai ser criado");
-        }
-
-        // Se não, executa o else.
-        else {
-          console.log("Não tem arquivo");
-        }
+        inputFile.value = ""; // Está atribuindo o valor vazio para a propriedade value do elemento inputFile.
+        buttonFile.setAttribute("disabled", "disabled"); // Está adicionando o atributo disabled para o elemento buttonFile.
+        fileInfo.style.display = "none"; // Está atribuindo o valor none para a propriedade display do elemento fileInfo.
       }
     };
 
+    // Criado uma função chamada inputClick, é responsável por pausar o slide.
+    const inputClick = () => {
+      this.pause(); // Está chamando/executando o método pause responsável por pausar o slide.
+
+      // Adiciona um evento de change(é disparado quando o valor do elemento é alterado) para o elemento inputFile e quando acionado executa a função anônima.
+      inputFile.addEventListener("change", () => {
+        // Se o elemento inputFile possui arquivos, executa o if abaixo.
+        if (inputFile.files) {
+          fileName.innerText = inputFile.files[0].name; // Está atribuindo o nome do arquivo para o elemento fileName.
+          fileInfo.style.display = "flex"; // Está atribuindo o valor flex para a propriedade display do elemento fileInfo.
+        }
+
+        this.continue(); // Está chamando/executando o método continue responsável por continuar o slide.
+        buttonFile.removeAttribute("disabled"); // Está removendo o atributo disabled do elemento buttonFile.
+      });
+    };
+
     // Adiciona um evento de clique para o elemento buttonFile e quando acionado executa a função handleClick.
-    buttonFile.addEventListener("click", () => handleClick);
+    buttonFile.addEventListener("click", () => buttonClick());
+    inputFile.addEventListener("click", () => inputClick());
   }
 
   // Criado um método privado(ou seja, só pode ser chamado/executado dentro da classe) chamado addThumbItemsNew, é responsável por adicionar o novo thumb do slide.
@@ -285,15 +301,18 @@ class Slide {
 
     // Se o elemento thumContainer não existir, o método é interrompido, não executando o código abaixo.
     if (!thumContainer) {
-      return;
+      return; // Está retornando o método, interrompendo a execução.
     }
 
-    // Está adicionando a estrutura HTML do elemento thumContainer novo.
-    thumContainer.innerHTML += `
+    // Cria uma estrutura HTML sem afetar o que já existe no elemento thumContainer, o insertAdjacentHTML recebe dois parâmetros, o primeiro é a posição que o HTML será inserido(beeforend é antes do fechamento da tag) e o segundo é o HTML que será inserido.
+    thumContainer.insertAdjacentHTML(
+      "beforeend",
+      `
         <span>
           <span class="thumb-item"></span>
         </span>
-      `;
+      `,
+    );
 
     this.thumbItems = Array.from(document.querySelectorAll(".thumb-item")); // Está atribuindo o valor de um array com todos os elementos que tem a classe thumb-item para a propriedade thumbItems.
   }

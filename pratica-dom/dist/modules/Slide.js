@@ -20,9 +20,7 @@ class Slide {
         this.time = time;
         this.timeout = null;
         this.pausedTimeout = null;
-        this.index = localStorage.getItem("activeSlide")
-            ? Number(localStorage.getItem("activeSlide"))
-            : 0;
+        this.index = 0;
         this.slide = this.slides[this.index];
         this.paused = false;
         this.thumbItems = null;
@@ -41,7 +39,6 @@ class Slide {
     show(index) {
         this.index = index;
         this.slide = this.slides[this.index];
-        localStorage.setItem("activeSlide", this.index.toString());
         if (this.thumbItems) {
             this.thumb = this.thumbItems[this.index];
             this.thumbItems.forEach((thumb) => thumb.classList.remove("active"));
@@ -156,45 +153,56 @@ class Slide {
         const inputFile = document.getElementById("file-input");
         const buttonFile = document.getElementById("file-button");
         const slideContainer = document.getElementById("slide-elements");
-        const handleClick = () => {
+        const fileInfo = document.getElementById("file-info");
+        const fileName = document.getElementById("file-name");
+        const createAndAppendElement = (element) => {
+            slideContainer.appendChild(element);
+            this.slides.push(element);
+            this.addThumbItemsNew();
+        };
+        const buttonClick = () => {
             if (inputFile.files?.length) {
                 const file = inputFile.files[0];
-                console.log(file);
                 if (file.type.includes("video")) {
                     const video = document.createElement("video");
                     video.playsInline = true;
                     video.src = URL.createObjectURL(file);
-                    slideContainer.appendChild(video);
-                    this.slides.push(video);
-                    this.addThumbItemsNew();
+                    createAndAppendElement(video);
                 }
                 else if (file.type.includes("image")) {
                     const image = document.createElement("img");
                     image.src = URL.createObjectURL(file);
-                    slideContainer.appendChild(image);
-                    this.slides.push(image);
-                    this.addThumbItemsNew();
+                    createAndAppendElement(image);
                 }
-                else if (file.type.includes("audio")) {
-                    console.log("Vai ser criado");
-                }
-                else {
-                    console.log("Não tem arquivo");
-                }
+                inputFile.value = "";
+                buttonFile.setAttribute("disabled", "disabled");
+                fileInfo.style.display = "none";
             }
         };
-        buttonFile.addEventListener("click", () => handleClick);
+        const inputClick = () => {
+            this.pause();
+            inputFile.addEventListener("change", () => {
+                if (inputFile.files) {
+                    fileName.innerText = inputFile.files[0].name;
+                    fileInfo.style.display = "flex";
+                }
+                this.continue();
+                buttonFile.removeAttribute("disabled");
+            });
+        };
+        buttonFile.addEventListener("click", () => buttonClick());
+        inputFile.addEventListener("click", () => inputClick());
     }
     addThumbItemsNew() {
         const thumContainer = document.getElementById("slide-thumb");
         if (!thumContainer) {
             return;
         }
-        thumContainer.innerHTML += `
+        thumContainer.insertAdjacentHTML("beforeend", `
         <span>
           <span class="thumb-item"></span>
         </span>
-      `;
+      `);
         this.thumbItems = Array.from(document.querySelectorAll(".thumb-item"));
     }
     addThumbItems() {
