@@ -148,7 +148,7 @@ h1 {
   width: 90vw;
 }
 
-#file-buttons {
+#file-media {
   display: flex;
   align-items: center;
 }
@@ -201,13 +201,7 @@ h1 {
   font-weight: 700;
 }
 
-#file-text {
-  width: 22%;
-}
-
 #file-name {
   font-size: 14px;
-  word-wrap: break-word;
-  width: 78%;
   font-weight: 500;
 }
