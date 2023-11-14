@@ -1,4 +1,4 @@
-import Timeout from "./Timeout.js";
+import Timeout from "./Timeout.js"; // Importa a classe Timeout do arquivo Timeout.js.
 
 // Criado uma classe chamada Slide.
 class Slide {
